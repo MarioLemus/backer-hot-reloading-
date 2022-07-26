@@ -1,6 +1,6 @@
 # Hot reloading for Node.js apps
 
-Backer is an easy and lightweight way to keep a Node.js aplication up and running without the necesity of manually reload. By the way, Back-er doesn't use external libraries.
+Backer is an easy and lightweight way to keep a Node.js aplication up and running without the necesity of manually reload. By the way, Backer doesn't use external libraries.
 
 ## How to use it
 
