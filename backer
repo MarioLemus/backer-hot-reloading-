@@ -1,0 +1,51 @@
+#!/usr/bin/env node 
+
+const fs = require('fs')
+const {exec} = require('child_process')
+
+//TODO: add lines number to check where the output is coming from
+
+const fileToWatch = process.argv[2].trim()
+const executeArgFile = 'node ' + fileToWatch
+const ROOT = process.cwd()
+
+function executeCommand(command) {
+  exec(command, (err, stdout, stderr) => {
+    if (err) {
+      console.log(err)
+    }
+    if (stdout) {
+      console.log(stdout)
+    }
+    if (stderr) {
+      console.log(stderr)
+    }
+  })
+}
+
+function printQuickUse() {
+  console.log('\n\n[* FAST RELOAD] V1.0.0')
+  console.log('[* FAST RELOAD] Write the relative path of the file you want to observe!')
+  console.log('[* FAST RELOAD] App starting point: ' + fileToWatch)
+  console.log('\n========================== YOUR CODE DOWN HERE ==========================\n')
+}
+
+//TODO: Add a check to see if the file exists
+
+// if (fs.stat(fileToWatch, (err) => {
+  // if (err) {
+    // return console.log('[* FAST RELOAD] File not found')
+  // }
+// }))
+
+
+printQuickUse()
+executeCommand(executeArgFile)
+
+fs.watchFile(ROOT+'/'+fileToWatch, (curr) => {
+  if (curr) {
+    printQuickUse()
+    executeCommand(executeArgFile)
+  }
+})
+
